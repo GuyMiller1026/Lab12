@@ -67,9 +67,34 @@ pub fn print_neighbor_counts(grid: &Grid) {
 // Set a few cells alive (hardcoded, or entered as `row col` pairs until a blank line),
 // print the grid, then the neighbor counts.
 pub fn play() {
-    todo!("Implement play")
-}
+    let mut grid = new_grid();
 
+    // Middle
+    grid[4][10] = true;
+    grid[5][10] = true;
+    grid[6][10] = true;
+
+    // Corner
+    grid[0][0] = true;
+    grid[1][0] = true;
+    grid[2][0] = true;
+
+    println!("Grid:");
+    print_grid(&grid);
+
+    println!();
+    println!("Neighbor counts:");
+    print_neighbor_counts(&grid);
+
+    // One cell run through the rule (not a full generation).
+    let alive = grid[5][10];
+    let neighbors = count_neighbors(&grid, 5, 10);
+    println!();
+    println!(
+        "Cell (5, 10): alive = {alive}, neighbors = {neighbors}, alive next generation = {}",
+        next_state(alive, neighbors)
+    );
+}
 #[cfg(test)]
 mod tests {
     use super::*;
