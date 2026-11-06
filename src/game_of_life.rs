@@ -32,12 +32,12 @@ pub fn count_neighbors(grid: &Grid, row: usize, col: usize) -> u8 {
     for dr in -1i32..=1 {
         for dc in -1i32..=1 {
             if dr == 0 && dc == 0 {
-                continue; // the cell itself is not its own neighbor
+                continue; // The cell is not its own neighbor
             }
             let r = row as i32 + dr;
             let c = col as i32 + dc;
             if r < 0 || r >= ROWS as i32 || c < 0 || c >= COLS as i32 {
-                continue; // beyond the edge counts as dead
+                continue; // Beyond the edge counts as dead
             }
             if grid[r as usize][c as usize] {
                 count += 1;
@@ -55,8 +55,13 @@ pub fn next_state(alive: bool, neighbors: u8) -> bool {
     }
 }
 // Debug view: each cell's neighbor count as a digit, one line per row.
-pub fn print_neighbor_counts(_grid: &Grid) {
-    todo!("Implement print_neighbor_counts")
+pub fn print_neighbor_counts(grid: &Grid) {
+    for row in 0..ROWS {
+        for col in 0..COLS {
+            print!("{}", count_neighbors(grid, row, col));
+        }
+        println!();
+    }
 }
 
 // Set a few cells alive (hardcoded, or entered as `row col` pairs until a blank line),
