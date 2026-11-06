@@ -9,7 +9,7 @@ type Grid = [[bool; COLS]; ROWS];
 
 // All cells dead.
 pub fn new_grid() -> Grid {
-    todo!("Implement new_grid")
+    {{false; COLS]; ROWS]
 }
 
 // '#' for a live cell, '.' for a dead cell, one line per row.
